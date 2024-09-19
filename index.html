@@ -48,19 +48,30 @@ html
       { name: 'BLR Certifying staffs', url: 'https://docs.google.com/spreadsheets/d/1SnoruSoL9a8HYJWJ-zwbMTsC-rujJXhMy0UeOevOmDk/edit?usp=sharing' , description: ' - cmblrqc1@gmail.com'}
     ];
 
-    const linkList = document.getElementById('linkList');
+    
+const linkList = document.getElementById('linkList');
 
-    links.forEach(link => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = link.url;
-      a.textContent = link.name;
-      a.target = '_blank'; // Opens link in a new tab
-      const span = document.createElement('span');
-  span.textContent = link.description;
-      li.appendChild(a);
-      li.appendChild(span);
-      linkList.appendChild(li);
+links.forEach(link => {
+  const li = document.createElement('li');
+
+  // Create the hyperlink for the name
+  const a = document.createElement('a');
+  a.href = link.url;
+  a.textContent = link.name;
+  a.target = '_blank'; // Opens link in a new tab
+
+  // Create a span for the multi-line non-hyperlinked text with <br> for line breaks
+  const description = link.description.split('\n').join('<br>'); // Replace \n with <br>
+  const span = document.createElement('span');
+  span.innerHTML = description;
+
+  // Append both the hyperlink and the non-hyperlink text to the list item
+  li.appendChild(a);
+  li.appendChild(document.createElement('br')); // Break line after the link
+  li.appendChild(span);
+
+  // Append the list item to the link list
+  linkList.appendChild(li);
     });
   </script>
 
