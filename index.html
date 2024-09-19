@@ -56,6 +56,8 @@ html
       a.href = link.url;
       a.textContent = link.name;
       a.target = '_blank'; // Opens link in a new tab
+      const span = document.createElement('span');
+  span.textContent = link.description;
       li.appendChild(a);
       linkList.appendChild(li);
     });
